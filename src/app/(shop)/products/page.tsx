@@ -6,6 +6,8 @@ import { Badge } from '@/components/ui/badge'
 import { Heart, ShoppingCart, Star, Grid3X3, List, Filter } from 'lucide-react'
 import { useState } from 'react'
 
+export const runtime = 'edge';
+
 // 仮の商品データ（後でデータベースから取得）
 const sampleProducts = [
   {

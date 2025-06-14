@@ -10,6 +10,8 @@ import { Separator } from '@/components/ui/separator'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Heart, Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react'
 
+export const runtime = 'edge';
+
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')

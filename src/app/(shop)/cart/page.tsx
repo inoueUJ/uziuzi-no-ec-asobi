@@ -19,6 +19,8 @@ import {
   Truck
 } from 'lucide-react'
 
+export const runtime = 'edge';
+
 // 仮のカートデータ（後でZustandで管理）
 interface CartItem {
   id: number

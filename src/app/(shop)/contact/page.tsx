@@ -22,6 +22,8 @@ import {
   MessageCircle
 } from 'lucide-react'
 
+export const runtime = 'edge';
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
