@@ -4,10 +4,44 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* 既存のshadcn/ui設定はそのまま維持 */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* === ハンドメイドECサイト専用カスタマイズ === */
+  
+  /* カスタムブレークポイント（レスポンシブ対応強化） */
+  --breakpoint-xs: 475px;    /* 小さいスマホ */
+  --breakpoint-sm: 640px;    /* スマホ */
+  --breakpoint-md: 768px;    /* タブレット */
+  --breakpoint-lg: 1024px;   /* PC */
+  --breakpoint-xl: 1280px;   /* 大きなPC */
+  --breakpoint-2xl: 1536px;  /* 超大型PC */
+  
+  /* ハンドメイド向けカラーパレット */
+  --color-handmade-primary: oklch(0.548 0.162 41.7);      /* 温かみのあるブラウン #D5A052 */
+  --color-handmade-primary-light: oklch(0.698 0.122 41.7); /* 薄いブラウン #E8B968 */
+  --color-handmade-secondary: oklch(0.751 0.097 162.5);    /* 優しいグリーン #8FBC8F */
+  --color-handmade-accent: oklch(0.677 0.151 27.3);       /* 温かみのあるオレンジ #E67E22 */
+  --color-handmade-neutral: oklch(0.948 0.009 106.8);     /* クリーム色 #F5F5DC */
+  --color-handmade-success: oklch(0.631 0.151 142.5);     /* 自然なグリーン #28A745 */
+  --color-handmade-warning: oklch(0.739 0.204 83.3);      /* 温かいイエロー #F39C12 */
+  --color-handmade-danger: oklch(0.568 0.191 22.2);       /* 優しいレッド #E74C3C */
+  
+  /* ECサイト専用スペーシング */
+  --spacing-product-gap: 1.5rem;      /* 商品間の間隔 */
+  --spacing-card-padding: 1.25rem;    /* カード内の余白 */
+  --spacing-section-gap: 3rem;        /* セクション間の間隔 */
+  --spacing-container-padding: 1rem;   /* コンテナの余白 */
+  
+  /* レスポンシブ対応のフォントサイズ */
+  --font-size-product-title: clamp(1.125rem, 2.5vw, 1.5rem);    /* 商品タイトル */
+  --font-size-product-price: clamp(1.25rem, 3vw, 1.75rem);     /* 価格表示 */
+  --font-size-button: clamp(0.875rem, 2vw, 1rem);              /* ボタンテキスト */
+  
+  /* 既存のshadcn/ui設定 */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -118,5 +152,72 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* === レスポンシブ対応のユーティリティクラス === */
+@layer utilities {
+  /* 商品グリッド専用クラス */
+  .product-grid {
+    @apply grid gap-[--spacing-product-gap] p-[--spacing-container-padding];
+    grid-template-columns: repeat(2, 1fr); /* モバイル: 2列 */
+  }
+  
+  @media (min-width: 1024px) {
+    .product-grid {
+      grid-template-columns: repeat(3, 1fr); /* PC: 3列 */
+    }
+  }
+  
+  /* 商品カード専用クラス */
+  .product-card {
+    @apply bg-card rounded-lg border p-[--spacing-card-padding] shadow-sm hover:shadow-md transition-shadow;
+  }
+  
+  /* レスポンシブコンテナ */
+  .responsive-container {
+    @apply mx-auto px-[--spacing-container-padding];
+    max-width: 100%;
+  }
+  
+  @media (min-width: 640px) {
+    .responsive-container {
+      max-width: 640px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .responsive-container {
+      max-width: 768px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .responsive-container {
+      max-width: 1024px;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .responsive-container {
+      max-width: 1280px;
+    }
+  }
+  
+  /* ボタンサイズ調整 */
+  .btn-responsive {
+    @apply px-4 py-2 text-[--font-size-button] rounded-md font-medium transition-colors;
+    min-height: 44px; /* タップしやすいサイズ */
+  }
+  
+  /* 価格表示 */
+  .price-display {
+    @apply text-[--font-size-product-price] font-bold;
+    color: var(--color-handmade-primary);
+  }
+  
+  /* 商品タイトル */
+  .product-title {
+    @apply text-[--font-size-product-title] font-semibold line-clamp-2;
   }
 }
