@@ -13,6 +13,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const runtime = "edge"
+
 export const metadata: Metadata = {
   title: "うじうじshop",
   description: "一つ一つ心を込めて作ったハンドメイド作品をお届けします。あなたの日常に特別な彩りを。",

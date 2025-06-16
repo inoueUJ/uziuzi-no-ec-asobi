@@ -1,6 +1,8 @@
 import { Button } from '@/components/ui/button'
 import { Heart, Star, ShoppingBag } from 'lucide-react'
 
+export const runtime = "edge"
+
 export default function HomePage() {
   return (
     <div className="space-y-16 py-8">
